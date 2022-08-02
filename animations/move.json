@@ -1,0 +1,32 @@
+{
+	"format_version": "1.10.0",
+	"animations": {
+		"animation.test_move": {
+			"loop": true,
+			"override_previous_animation": true,
+			"bones": {
+				"root": {
+					"rotation": [
+						0,
+						"0+0",
+						0
+					]
+				},
+				"head": {
+					"rotation": [
+						"0",
+						"0+query.target_y_rotation",
+						"0"
+					]
+				},
+				"hat": {
+					"position": [
+						"v.view_c*query.ground_speed",
+						"0",
+						"-v.view_d*query.ground_speed"
+					]
+				}
+			}
+		}
+	}
+}

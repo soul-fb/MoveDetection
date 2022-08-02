@@ -1,0 +1,51 @@
+{
+	"format_version": "1.10.0",
+	"minecraft:client_entity": {
+		"description": {
+			"identifier": "minecraft:player",
+			"materials": {
+				"default": "entity_alphatest",
+				"cape": "entity_alphatest",
+				"animated": "player_animated"
+			},
+			"textures": {
+				"default": "textures/entity/steve",
+				"cape": "textures/entity/cape_invisible"
+			},
+			"geometry": {
+				"default": "geometry.humanoid.custom",
+				"cape": "geometry.cape"
+			},
+			"scripts": {
+				"scale": "0.9375",
+				"initialize": [
+					"v.pre_view = 0.0;"
+				],
+				"pre_animation": [
+					"v.pre_view = (v.pre_view -(q.body_y_rotation + query.target_y_rotation)) / 2;",
+					"v.view_d = -((math.sin(v.pre_view) * (-query.movement_direction(0) * 5 )) + (math.cos(v.pre_view) * (-query.movement_direction(2) * 5 )));",
+					"v.view_c = (math.sin(v.pre_view) * (-query.movement_direction(2) * 5 )) - (math.cos(v.pre_view) * (-query.movement_direction(0) * 5 ));",
+					"v.pre_view = -(q.body_y_rotation + query.target_y_rotation);"
+				],
+				"animate": [
+					"test_move"
+				]
+			},
+			"animations": {
+				"test_move": "animation.test_move"
+			},
+			"render_controllers": [
+				{
+					"controller.render.player.first_person": "variable.is_first_person"
+				},
+				{
+					"controller.render.player.third_person": "!variable.is_first_person&&!variable.map_face_icon"
+				},
+				{
+					"controller.render.player.map": "variable.map_face_icon"
+				}
+			],
+			"enable_attachables": true
+		}
+	}
+}
